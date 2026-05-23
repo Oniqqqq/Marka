@@ -1,1 +1,2 @@
-/* Google Fonts stub */
+/* Google Fonts stub - fonts loaded from system */
+body { font-family: "Open Sans", Arial, sans-serif; }
