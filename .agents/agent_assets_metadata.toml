@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "KpmPdmwQatzvhN3Db64E1"
+uri = "file://local-site.tar.gz"
+type = "unspecified"
+title = "local-site.tar.gz — Store77 локальная копия (1.4 MB)"

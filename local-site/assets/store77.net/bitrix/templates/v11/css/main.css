@@ -1,0 +1,36 @@
+/* Store77 main.css - placeholder (WAF-protected original) */
+body { font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; color: #333; margin: 0; padding: 0; background: #fff; }
+a { color: #333; text-decoration: none; }
+a:hover { color: #E2DC04; }
+.container { max-width: 1200px; }
+.btn_green_b, .link_but { background: #E2DC04; color: #222; border: none; padding: 8px 18px; border-radius: 3px; cursor: pointer; font-weight: 600; display: inline-block; }
+.btn_green_b:hover, .link_but:hover { background: #d4cf00; }
+.blocks_product { background: #fff; border: 1px solid #eee; border-radius: 4px; overflow: hidden; margin-bottom: 20px; transition: box-shadow .2s; }
+.blocks_product:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+.bp_product_img img { width: 100%; display: block; }
+.bp_text { padding: 10px; }
+.bp_text_price { font-size: 18px; font-weight: 700; color: #222; margin: 0 0 4px; }
+.bp_text_info a { font-size: 13px; color: #444; line-height: 1.4; }
+.bp_hover_text { display: none; }
+.blocks_product:hover .bp_hover_text { display: block; }
+.bp_hover_text_but { text-align: center; padding: 8px; }
+.blocks_product_fix_w { position: relative; }
+.list_bl_pr { margin-bottom: 20px; }
+.wrap_list_prod { display: flex; flex-wrap: wrap; }
+.list_poduct { padding: 0 15px; }
+.pagination_catalog { text-align: center; margin: 20px 0; }
+.catalog_wrapper { display: flex; }
+.for_mob_catalog { flex: 0 0 250px; min-width: 220px; }
+.mf_catalog { flex: 1; }
+.total_num_product { font-size: 13px; color: #888; margin-bottom: 10px; }
+.list_product_more { display: block; text-align: center; padding: 12px; border: 1px solid #E2DC04; border-radius: 3px; color: #222; margin: 10px auto; max-width: 200px; }
+.favorite_product { background: none; border: none; cursor: pointer; position: absolute; top: 5px; right: 5px; z-index: 2; color: #ccc; }
+.favorite_product:hover { color: #E2DC04; }
+.mob_btn_cart { display: none; }
+.bp_hover_text_dostavka { display: none; }
+.catalog_menu { list-style: none; margin: 0; padding: 0; }
+.catalog_menu li { border-bottom: 1px solid #f0f0f0; }
+.catalog_menu a { display: block; padding: 8px 12px; font-size: 13px; }
+.catalog_menu a:hover { background: #f9f9f0; color: #E2DC04; }
+.catalog_menu_sub_second, .catalog_menu_sub_third { display: none; list-style: none; padding-left: 15px; }
+.catalog_menu li:hover > .catalog_menu_sub_second { display: block; }

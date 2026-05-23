@@ -1,0 +1,13 @@
+/* Store77 media.css - placeholder responsive */
+@media (max-width: 992px) {
+  .for_mob_catalog { display: none; }
+  .mf_catalog { width: 100%; }
+}
+@media (max-width: 768px) {
+  .mob_btn_cart { display: block; }
+  .bp_hover_text { display: none !important; }
+  .wrap_list_prod .col-sm-6 { width: 50%; }
+}
+@media (max-width: 480px) {
+  .wrap_list_prod .col-xs-6 { width: 50%; }
+}
