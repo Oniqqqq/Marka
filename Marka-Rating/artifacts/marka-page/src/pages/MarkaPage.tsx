@@ -93,124 +93,75 @@ const IconScan = () => (
   </svg>
 );
 
-// ─── LEGO Product Visual (CSS art) ──────────────────────────────────────────
+// ─── Laureate Badge with 3D tilt ─────────────────────────────────────────────
+function LaureateBadge({ src }: { src: string }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+    const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+    setTilt({ x: dy * -5, y: dx * 5 });
+  };
+
+  const isResting = tilt.x === 0 && tilt.y === 0 && !hovered;
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setTilt({ x: 0, y: 0 }); setHovered(false); }}
+      style={{
+        display: "inline-flex",
+        cursor: "default",
+        transformStyle: "preserve-3d",
+        transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: isResting
+          ? "transform 0.55s cubic-bezier(0.4,0,0.2,1), filter 0.4s ease"
+          : "transform 0.08s linear",
+        filter: `drop-shadow(0 ${hovered ? 18 : 10}px ${hovered ? 48 : 32}px rgba(201,168,76,${hovered ? 0.6 : 0.4})) drop-shadow(0 2px 8px rgba(0,0,0,0.8))`,
+      }}
+    >
+      <img
+        src={src}
+        alt="Лауреат Марка Рейтинг 2026"
+        style={{
+          width: 168,
+          height: "auto",
+          display: "block",
+          clipPath: "inset(4% 9% round 10px)",
+          filter: "saturate(1.35) brightness(1.06) contrast(1.1)",
+        }}
+      />
+    </div>
+  );
+}
+
+// ─── LEGO Product Visual (real photos) ──────────────────────────────────────
 function LegoProductVisual() {
   return (
-    <div style={{ position: "relative", width: "100%", aspectRatio: "1.1 / 1", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      {/* Ambient glow */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse at 40% 50%, rgba(201,168,76,0.12) 0%, rgba(59,130,246,0.06) 50%, transparent 70%)",
-        borderRadius: "50%", filter: "blur(30px)",
-      }}/>
-      {/* Camera body */}
-      <svg viewBox="0 0 340 300" style={{ width: "90%", filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(201,168,76,0.15))" }}>
-        <defs>
-          <linearGradient id="cam1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#e8e8e8"/>
-            <stop offset="50%" stopColor="#d0d0d0"/>
-            <stop offset="100%" stopColor="#b0b0b0"/>
-          </linearGradient>
-          <linearGradient id="cam2" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1a1a2e"/>
-            <stop offset="100%" stopColor="#0d0d1a"/>
-          </linearGradient>
-          <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#e74c3c"/>
-            <stop offset="25%" stopColor="#f39c12"/>
-            <stop offset="50%" stopColor="#2ecc71"/>
-            <stop offset="75%" stopColor="#3498db"/>
-            <stop offset="100%" stopColor="#9b59b6"/>
-          </linearGradient>
-          <radialGradient id="lens1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#4a6fa5" stopOpacity="0.8"/>
-            <stop offset="50%" stopColor="#1a3a6a" stopOpacity="0.9"/>
-            <stop offset="100%" stopColor="#0a1a40"/>
-          </radialGradient>
-          <linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#e8c96e"/>
-            <stop offset="100%" stopColor="#c9a84c"/>
-          </linearGradient>
-          <filter id="shadow1">
-            <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.4"/>
-          </filter>
-        </defs>
-        {/* Camera main body */}
-        <rect x="30" y="60" width="280" height="200" rx="18" fill="url(#cam1)" filter="url(#shadow1)"/>
-        {/* Top section dark */}
-        <rect x="30" y="60" width="280" height="70" rx="18" fill="url(#cam2)"/>
-        <rect x="30" y="110" width="280" height="20" fill="url(#cam2)"/>
-        {/* Film door */}
-        <rect x="50" y="135" width="240" height="110" rx="8" fill="#c8c8c8"/>
-        <rect x="60" y="145" width="220" height="90" rx="6" fill="#d8d8d8"/>
-        {/* Rainbow stripe */}
-        <rect x="60" y="218" width="220" height="18" rx="3" fill="url(#rainbow)"/>
-        {/* Lens assembly */}
-        <circle cx="160" cy="95" r="34" fill="#2a2a3e"/>
-        <circle cx="160" cy="95" r="30" fill="url(#lens1)"/>
-        <circle cx="160" cy="95" r="20" fill="#0a1a40"/>
-        <circle cx="160" cy="95" r="12" fill="#050d20"/>
-        <circle cx="153" cy="88" r="4" fill="rgba(255,255,255,0.25)"/>
-        <circle cx="167" cy="100" r="2" fill="rgba(255,255,255,0.1)"/>
-        {/* Viewfinder */}
-        <rect x="210" y="68" width="50" height="35" rx="5" fill="#1a1a2e"/>
-        <rect x="214" y="72" width="42" height="27" rx="3" fill="#0a0a1e"/>
-        <rect x="216" y="74" width="38" height="23" rx="2" fill="#1a2a4e" opacity="0.8"/>
-        {/* Flash bar */}
-        <rect x="50" y="68" width="90" height="24" rx="5" fill="rgba(255,255,255,0.6)"/>
-        <rect x="54" y="72" width="82" height="16" rx="3" fill="rgba(200,220,255,0.4)"/>
-        {/* Shutter button */}
-        <circle cx="270" cy="82" r="10" fill="url(#gold1)"/>
-        <circle cx="270" cy="82" r="7" fill="#e8c96e" opacity="0.8"/>
-        {/* Film slot */}
-        <rect x="100" y="248" width="140" height="8" rx="4" fill="#a0a0a0"/>
-        {/* LEGO studs on top */}
-        {[0,1,2,3,4,5,6].map(i => (
-          <circle key={i} cx={80 + i * 28} cy="58" r="5" fill="#c8c8c8" stroke="#a8a8a8" strokeWidth="1"/>
-        ))}
-        {/* Polaroid text area */}
-        <rect x="65" y="148" width="80" height="22" rx="3" fill="rgba(0,0,0,0.08)"/>
-        <text x="75" y="163" fontFamily="Arial" fontSize="10" fontWeight="bold" fill="#555" letterSpacing="1">POLAROID</text>
-      </svg>
-      {/* Floating photo cards */}
-      <div style={{
-        position: "absolute", bottom: "8%", left: "2%",
-        width: 80, height: 96,
-        background: "linear-gradient(135deg, #1a1a2a, #0d0d18)",
-        border: "1px solid rgba(201,168,76,0.25)",
-        borderRadius: 8,
-        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end",
-        padding: "6px 4px",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-        transform: "rotate(-8deg)",
-      }}>
-        <div style={{ width: "100%", height: 70, background: "linear-gradient(135deg, #2a3a5a 0%, #1a2a4a 100%)", borderRadius: 4, marginBottom: 4, position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 40% 40%, rgba(59,130,246,0.3), transparent)" }}/>
-          {/* Mini LEGO brick pattern */}
-          {[0,1,2,3].map(row => [0,1,2,3].map(col => (
-            <div key={`${row}-${col}`} style={{ position: "absolute", left: col*17+4, top: row*13+4, width: 11, height: 9, background: "rgba(255,200,50,0.15)", borderRadius: 2, border: "1px solid rgba(255,200,50,0.1)" }}/>
-          )))}
-        </div>
-        <div style={{ width: "90%", height: 3, background: "rgba(201,168,76,0.4)", borderRadius: 2 }}/>
-      </div>
-      <div style={{
-        position: "absolute", bottom: "2%", right: "3%",
-        width: 70, height: 85,
-        background: "linear-gradient(135deg, #1a2a1a, #0d1a0d)",
-        border: "1px solid rgba(34,197,94,0.2)",
-        borderRadius: 8,
-        boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-        transform: "rotate(6deg)",
-        overflow: "hidden",
-      }}>
-        <div style={{ width: "100%", height: 62, background: "linear-gradient(135deg, #1a3a2a 0%, #0d2a1a 100%)", position: "relative" }}>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 60% 40%, rgba(34,197,94,0.25), transparent)" }}/>
-        </div>
-        <div style={{ padding: "4px 6px" }}>
-          <div style={{ width: "70%", height: 3, background: "rgba(34,197,94,0.4)", borderRadius: 2, marginBottom: 3 }}/>
-          <div style={{ width: "50%", height: 3, background: "rgba(34,197,94,0.2)", borderRadius: 2 }}/>
-        </div>
-      </div>
+    <div style={{
+      position: "relative", width: "100%", aspectRatio: "1.1 / 1",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      overflow: "hidden",
+      background: "radial-gradient(ellipse at 50% 60%, rgba(201,168,76,0.06) 0%, transparent 65%)",
+    }}>
+      <img
+        src="/assets/store77.net/upload/w247/imageCache/d47/86b/41d317df0bc7985c780da931ab6bcbc6.jpg"
+        alt="LEGO Ideas 21345 Камера Polaroid OneStep SX-70"
+        style={{
+          width: "92%",
+          height: "92%",
+          objectFit: "contain",
+          borderRadius: 8,
+          filter: "drop-shadow(0 20px 50px rgba(0,0,0,0.65)) drop-shadow(0 0 30px rgba(201,168,76,0.08))",
+        }}
+      />
     </div>
   );
 }
@@ -238,18 +189,14 @@ function TrustIndexChart() {
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
-        {/* Grid lines */}
         {[60, 70, 80, 90, 100].map(v => (
           <line key={v} x1={20} y1={toY(v)} x2={w - 20} y2={toY(v)}
             stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="3,3"/>
         ))}
-        {/* Y labels */}
         {[60, 75, 90].map(v => (
           <text key={v} x={16} y={toY(v) + 4} fontSize="9" fill="rgba(255,255,255,0.3)" textAnchor="end">{v}%</text>
         ))}
-        {/* Area fill */}
         <path d={areaD} fill="url(#chartFill)"/>
-        {/* Line */}
         <path d={pathD} fill="none" stroke="url(#lineGrad)" strokeWidth="2.5" strokeLinecap="round" filter="url(#glow2)"/>
         <defs>
           <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
@@ -257,17 +204,14 @@ function TrustIndexChart() {
             <stop offset="100%" stopColor="#e8c96e"/>
           </linearGradient>
         </defs>
-        {/* End dot */}
         <circle cx={toX(points.length - 1)} cy={toY(points[points.length - 1])} r="4" fill="var(--gold)" filter="url(#glow2)"/>
         <circle cx={toX(points.length - 1)} cy={toY(points[points.length - 1])} r="7" fill="rgba(201,168,76,0.2)"/>
-        {/* X labels */}
         {labels.map((label, i) => {
           const idx = Math.round((i / (labels.length - 1)) * (points.length - 1));
           return (
             <text key={label} x={toX(idx)} y={h - 2} fontSize="9" fill="rgba(255,255,255,0.3)" textAnchor="middle">{label}</text>
           );
         })}
-        {/* End label */}
         <text x={toX(points.length - 1) + 8} y={toY(points[points.length - 1]) - 6}
           fontSize="11" fontWeight="700" fill="var(--gold-light)">98.7%</text>
       </svg>
@@ -446,11 +390,25 @@ export default function MarkaPage() {
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           {/* Logo */}
-          <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <img src={logoTag} alt="Marka.ONE" style={{ height: 34, width: "auto", objectFit: "contain" }}/>
+          <a href="#" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
+            {/* Logo image — clip-path removes white margins, drop-shadow creates glow */}
+            <div style={{ filter: "drop-shadow(0 2px 14px rgba(201,168,76,0.5)) drop-shadow(0 0 6px rgba(201,168,76,0.25))" }}>
+              <img
+                src={logoTag}
+                alt="Марка Рейтинг"
+                style={{
+                  height: 50,
+                  width: "auto",
+                  objectFit: "contain",
+                  display: "block",
+                  clipPath: "inset(9% round 17%)",
+                  filter: "saturate(1.6) brightness(1.08) contrast(1.1)",
+                }}
+              />
+            </div>
             <div>
-              <span style={{ fontSize: 16, fontWeight: 800, color: "var(--gold-light)", letterSpacing: "-0.02em" }}>Marka</span>
-              <span style={{ fontSize: 16, fontWeight: 400, color: "var(--text-secondary)" }}>.ONE</span>
+              <span style={{ fontSize: 16, fontWeight: 800, color: "var(--gold-light)", letterSpacing: "-0.02em" }}>Марка</span>
+              <span style={{ fontSize: 16, fontWeight: 400, color: "var(--text-secondary)" }}> Рейтинг</span>
             </div>
           </a>
           {/* Nav */}
@@ -488,7 +446,7 @@ export default function MarkaPage() {
               borderRadius: 100, fontSize: 13, color: "var(--text-secondary)",
             }}>
               <div style={{ width: 22, height: 22, borderRadius: "50%", background: "linear-gradient(135deg, #3b82f6, #8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, color: "#fff" }}>M</div>
-              Marka.ONE
+              Марка Рейтинг
             </div>
           </div>
         </div>
@@ -526,34 +484,34 @@ export default function MarkaPage() {
                 <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 70%, rgba(201,168,76,0.06), transparent 60%)", pointerEvents: "none" }}/>
                 <LegoProductVisual/>
               </div>
+              {/* Product thumbnails — real photos */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 10 }}>
-                {["детали набора", "собранная модель"].map((label, i) => (
+                {[
+                  {
+                    label: "коробка набора",
+                    src: "/assets/store77.net/upload/w247/imageCache/af1/5dd/dd42af3a802435513f159548f1321634.jpg",
+                  },
+                  {
+                    label: "собранная модель",
+                    src: "/assets/store77.net/upload/w247/imageCache/c3a/3da/adb40ee00e4d714e4104d5451dc465be.jpg",
+                  },
+                ].map(({ label, src }) => (
                   <div key={label} style={{
                     borderRadius: 12, border: "1px solid var(--border)",
                     background: "var(--bg-card)", aspectRatio: "4/3",
-                    display: "flex", alignItems: "center", justifyContent: "center",
                     position: "relative", overflow: "hidden",
                   }}>
-                    <div style={{ position: "absolute", inset: 0, background: i === 0 ? "radial-gradient(circle at 50% 50%, rgba(201,168,76,0.08), transparent)" : "radial-gradient(circle at 50% 50%, rgba(34,197,94,0.06), transparent)" }}/>
-                    {i === 0 ? (
-                      <svg viewBox="0 0 80 60" style={{ width: 70, opacity: 0.7 }}>
-                        {[[0,10],[20,10],[40,10],[60,10],[10,30],[30,30],[50,30]].map(([x,y],j) => (
-                          <g key={j}>
-                            <rect x={x} y={y} width={16} height={12} rx={2} fill={["#e74c3c","#f39c12","#2ecc71","#3498db","#9b59b6","#e74c3c","#f39c12"][j]} opacity="0.8"/>
-                            <circle cx={x+8} cy={y} r={3} fill={["#e74c3c","#f39c12","#2ecc71","#3498db","#9b59b6","#e74c3c","#f39c12"][j]}/>
-                          </g>
-                        ))}
-                      </svg>
-                    ) : (
-                      <svg viewBox="0 0 80 60" style={{ width: 70, opacity: 0.7 }}>
-                        <rect x={10} y={15} width={60} height={32} rx={6} fill="#d0d0d0"/>
-                        <circle cx={40} cy={31} r={12} fill="#2a2a3e"/>
-                        <circle cx={40} cy={31} r={9} fill="#1a3a6a"/>
-                        <circle cx={37} cy={28} r={3} fill="rgba(255,255,255,0.3)"/>
-                        <rect x={55} y={18} width={12} height={8} rx={2} fill="#1a1a2e"/>
-                      </svg>
-                    )}
-                    <div style={{ position: "absolute", bottom: 6, left: 0, right: 0, textAlign: "center", fontSize: 10, color: "var(--text-muted)" }}>{label}</div>
+                    <img
+                      src={src}
+                      alt={label}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    />
+                    <div style={{
+                      position: "absolute", bottom: 0, left: 0, right: 0,
+                      background: "linear-gradient(transparent, rgba(0,0,0,0.7))",
+                      padding: "12px 8px 6px",
+                      textAlign: "center", fontSize: 10, color: "rgba(255,255,255,0.85)",
+                    }}>{label}</div>
                   </div>
                 ))}
               </div>
@@ -590,7 +548,7 @@ export default function MarkaPage() {
                 Камера Polaroid OneStep SX-70
               </h2>
               <p style={{ fontSize: 14, color: "var(--text-muted)", marginBottom: 28, maxWidth: 480, lineHeight: 1.6 }}>
-                Рейтинг товара на основе реальных пользовательских оценок, подтвержденных по методологии Marka Rating.
+                Рейтинг товара на основе реальных пользовательских оценок, подтвержденных по методологии Марка Рейтинг.
               </p>
 
               {/* Rating block */}
@@ -648,19 +606,17 @@ export default function MarkaPage() {
                 borderRadius: 20,
                 background: "linear-gradient(135deg, var(--bg-card), rgba(22,22,29,0.8))",
                 border: "1px solid rgba(201,168,76,0.3)",
-                padding: "24px 20px",
+                padding: "28px 20px 20px",
                 display: "flex", flexDirection: "column", alignItems: "center",
-                gap: 12, textAlign: "center",
+                gap: 14, textAlign: "center",
                 boxShadow: "0 0 60px rgba(201,168,76,0.08), inset 0 0 40px rgba(201,168,76,0.03)",
                 position: "relative", overflow: "hidden",
               }}>
                 <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.08), transparent 70%)", pointerEvents: "none" }}/>
-                <img src={laureate} alt="Лауреат Marka.ONE 2026" style={{
-                  width: 160, height: "auto", objectFit: "contain",
-                  filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.3))",
-                }}/>
-                <div style={{ fontSize: 11, color: "var(--text-muted)", lineHeight: 1.5 }}>
-                  Официальный лауреат<br/>платформы Marka.ONE
+                <LaureateBadge src={laureate} />
+                <div style={{ fontSize: 11, color: "var(--text-muted)", lineHeight: 1.6 }}>
+                  Официальный лауреат<br/>
+                  <span style={{ color: "var(--gold)", fontWeight: 600 }}>Марка Рейтинг</span>
                 </div>
               </div>
 
@@ -958,7 +914,7 @@ export default function MarkaPage() {
                   Методология
                 </div>
                 <h3 style={{ fontSize: 26, fontWeight: 700, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-                  Как работает Marka Rating
+                  Как работает Марка Рейтинг
                 </h3>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16 }}>
@@ -998,10 +954,22 @@ export default function MarkaPage() {
           <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 40 }}>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                <img src={logoTag} alt="Marka.ONE" style={{ height: 28, width: "auto" }}/>
+                <div style={{ filter: "drop-shadow(0 2px 10px rgba(201,168,76,0.4))" }}>
+                  <img
+                    src={logoTag}
+                    alt="Марка Рейтинг"
+                    style={{
+                      height: 36,
+                      width: "auto",
+                      display: "block",
+                      clipPath: "inset(9% round 17%)",
+                      filter: "saturate(1.5) brightness(1.05) contrast(1.1)",
+                    }}
+                  />
+                </div>
                 <div>
-                  <span style={{ fontSize: 15, fontWeight: 800, color: "var(--gold-light)" }}>Marka</span>
-                  <span style={{ fontSize: 15, fontWeight: 400, color: "var(--text-muted)" }}>.ONE</span>
+                  <span style={{ fontSize: 15, fontWeight: 800, color: "var(--gold-light)" }}>Марка</span>
+                  <span style={{ fontSize: 15, fontWeight: 400, color: "var(--text-muted)" }}> Рейтинг</span>
                 </div>
               </div>
               <p style={{ fontSize: 13, color: "var(--text-muted)", maxWidth: 280, lineHeight: 1.7 }}>
@@ -1031,9 +999,9 @@ export default function MarkaPage() {
           </div>
           <div style={{ borderTop: "1px solid var(--border)", paddingTop: 20, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24 }}>
             <p style={{ fontSize: 11, color: "var(--text-muted)", maxWidth: 640, lineHeight: 1.6 }}>
-              <b style={{ color: "var(--text-muted)", fontWeight: 600 }}>Дисклеймер:</b> Marka.ONE подтверждает происхождение оценки — факт покупки, сканирование товара или верификацию продавца. Платформа не является органом государственной сертификации и не гарантирует качество товара в юридическом смысле. Оценки пользователей носят информационный характер.
+              <b style={{ color: "var(--text-muted)", fontWeight: 600 }}>Дисклеймер:</b> Марка Рейтинг подтверждает происхождение оценки — факт покупки, сканирование товара или верификацию продавца. Платформа не является органом государственной сертификации и не гарантирует качество товара в юридическом смысле. Оценки пользователей носят информационный характер.
             </p>
-            <div style={{ fontSize: 11, color: "var(--text-muted)", whiteSpace: "nowrap" }}>© 2026 Marka.ONE</div>
+            <div style={{ fontSize: 11, color: "var(--text-muted)", whiteSpace: "nowrap" }}>© 2026 Марка Рейтинг</div>
           </div>
         </div>
       </footer>
