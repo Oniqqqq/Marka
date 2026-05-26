@@ -1,0 +1,8 @@
+{
+  "installCommand": "cd Marka-Rating && pnpm install",
+  "buildCommand": "cd Marka-Rating && PORT=3000 BASE_PATH=/marka-rating/ pnpm --filter @workspace/marka-page run build && mkdir -p ../local-site/marka-rating && cp -r artifacts/marka-page/dist/public/. ../local-site/marka-rating/",
+  "outputDirectory": "local-site",
+  "rewrites": [
+    { "source": "/marka-rating/:path*", "destination": "/marka-rating/index.html" }
+  ]
+}

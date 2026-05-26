@@ -1,2 +1,212 @@
-/* Store77 appBanner.css - placeholder */
-.app-banner { display: none; }
+/*!
+ * smartbanner.js v1.11.0 <https://github.com/ain/smartbanner.js>
+ * Copyright Â© 2019 Ain Tohvri, contributors. Licensed under GPL-3.0.
+ */
+ .smartbanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    width: 100%;
+    height: 84px;
+    background: var(--smartbanner-background);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Helvetica, sans, sans-serif
+}
+
+.smartbanner__exit {
+    position: absolute;
+    top: calc(50% - 11px);
+    left: 4px;
+    display: block;
+    margin: 0;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    text-align: center
+}
+
+.smartbanner__exit::before,.smartbanner__exit::after {
+    position: absolute;
+    width: 1px;
+    height: 22px;
+    background: #4f4f4f;
+    content: ' '
+}
+
+.smartbanner__exit::before {
+    transform: rotate(45deg)
+}
+
+.smartbanner__exit::after {
+    transform: rotate(-45deg)
+}
+
+.smartbanner__icon {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    width: 72px;
+    height: 72px;
+    border-radius: 15px;
+    background-size: contain;
+}
+
+.smartbanner__info {
+    position: absolute;
+    top: 10px;
+    left: 104px;
+    display: flex;
+    overflow-y: hidden;
+    width: calc(60% - 80px);
+    height: 64px;
+    align-items: center;
+    color: #000;
+    line-height: 1.2em
+}
+.smartbanner__info__title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.smartbanner__info__author,.smartbanner__info__price {
+    font-size: 24px
+}
+.smartbanner__info__author {
+    margin-top: 5px;
+}
+.smartbanner__info .smartbanner__info__price {
+    display: none;
+}
+
+.smartbanner__button {
+    border: 4px solid rgba(224, 218, 5, 0.5);
+    position: absolute;
+    top: calc(50% - 21px);
+    right: 10px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    min-width: 10%;
+    border-radius: 25px;
+    color: #1E242E;
+    font-size: 18px;
+    text-align: right;
+    text-decoration: none;
+}
+.smartbanner__button span {
+    background: #DDDB04;
+    border-radius: 25px;
+    display: block;
+    padding: 4px 10px;
+}
+
+.smartbanner__button__label {
+    text-align: right
+}
+
+.smartbanner__score__container {
+    display: inline-block;
+    position: relative
+}
+
+.smartbanner__score__stars-filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+
+.smartbanner.smartbanner--android {
+    box-shadow: inset 0 4px 0 #88b131
+}
+
+.smartbanner.smartbanner--android .smartbanner__exit {
+    left: 6px;
+    margin-right: 7px;
+    width: 17px;
+    height: 17px;
+    border-radius: 14px;
+    background: #1c1e21;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.8) inset,0 1px 1px rgba(255,255,255,0.3);
+    color: #b1b1b3;
+    font-family: 'ArialRoundedMTBold', Arial;
+    font-size: 20px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    line-height: 17px;
+    text-shadow: 0 1px 1px #000
+}
+
+.smartbanner.smartbanner--android .smartbanner__exit::before,.smartbanner.smartbanner--android .smartbanner__exit::after {
+    top: 3px;
+    left: 8px;
+    width: 2px;
+    height: 11px;
+    background: #b1b1b3
+}
+
+.smartbanner.smartbanner--android .smartbanner__exit:active,.smartbanner.smartbanner--android .smartbanner__exit:hover {
+    color: #eee
+}
+
+.smartbanner.smartbanner--android .smartbanner__icon {
+    background-color: transparent;
+    box-shadow: none;
+    background-color: #FFF
+}
+
+.smartbanner.smartbanner--android .smartbanner__info {
+    color: #333
+}
+
+.smartbanner.smartbanner--android .smartbanner__info__title {
+    color: #333;
+    font-weight: bold
+}
+
+.smartbanner.smartbanner--android .smartbanner__button {
+    top: 30px;
+    right: 20px;
+    padding: 0;
+    min-width: 12%;
+    border-radius: 0;
+    background: none;
+    color: #42b6c9;
+    font-size: 14px;
+    font-weight: bold
+}
+
+.smartbanner.smartbanner--android .smartbanner__button:active,.smartbanner.smartbanner--android .smartbanner__button:hover {
+    background: none
+}
+
+.smartbanner.smartbanner--android .smartbanner__button__label {
+    display: block;
+    padding: 0 0 0 10px;
+    box-shadow: none;
+    line-height: 24px;
+    text-align: right;
+    text-shadow: none;
+    text-transform: none
+}
+
+@media (max-width: 400px) {
+    .smartbanner__info__author {
+        font-size: 21px;
+        margin-top: 2px;
+    }
+    .smartbanner__info__title {
+        font-size: 11px;
+        line-height: normal;
+    }
+    .smartbanner__button span {
+        padding: 3px 5px;
+    }
+    .smartbanner__button {;
+        font-size: 16px;
+    }
+}

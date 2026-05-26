@@ -1,2 +1,46 @@
-/* Store77 callform.css - placeholder */
-.form_call .form-control { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 3px; margin-bottom: 10px; }
+div.popup {
+    display: none;
+    overflow: hidden;
+    background: #fff;
+    padding: 17px;
+    -webkit-box-shadow: 0 0 10px #545454;
+    -moz-box-shadow: 0 0 10px #545454;
+    box-shadow: 0 0 10px #545454;
+    width: 200px;
+    border:10px solid rgba(255,255,255,0.2);
+    background-clip:padding-box;
+    border-radius:15px;
+}
+div.popup .h2{
+    text-align: center;
+    font-size: 21px;
+    color: #30302f;
+    padding-bottom: 15px;
+    font-family: "Roboto";
+}
+
+.popup input[type='text'],
+.popup textarea {
+    background: #d5d5d5;
+    border: 1px solid #b2b2b2;
+    color: #30302f;
+    font: 14px 'Roboto';
+    padding: 6px 14px;
+    margin-bottom: 10px;
+    width: 170px;
+}
+.popup textarea {
+    resize:vertical;
+}
+
+.popup input[type='submit']:active {
+    border-bottom: none;
+}
+div.popup label{
+    display: block;
+}
+.popup .error-message {
+    color: #ff0303;
+    margin-bottom: 5px;
+}
+.ui-dialog {z-index: 1;}

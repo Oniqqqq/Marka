@@ -1,1 +1,12 @@
-/* Store77 styles.css - placeholder */
+.ribbon {
+	width: 66px;
+	height: 49px;
+	background: url('http://store77.net/bitrix/templates/store_2dg/img/ribbon.png') center center no-repeat;
+	position: absolute;
+	left: 51%;
+	top: 14px;
+	z-index: 1;
+}
+.middle-ribbon {
+	background-image: url('http://store77.net/bitrix/templates/store_2dg/img/middle_ribbon.png') !important;
+}

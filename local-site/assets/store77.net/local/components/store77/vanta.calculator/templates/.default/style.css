@@ -1,1 +1,187 @@
-/* vanta calculator - placeholder */
+.blocks_product:has(.vanta-info) .blocks_product_label_hover {
+    bottom: 243px;
+}
+.vanta-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.vanta-info-bage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    gap: 4px;
+    background: linear-gradient(85.31deg, rgba(255, 147, 227, 0.3) -11.77%, rgba(214, 201, 255, 0.3) 64.01%, rgba(143, 220, 255, 0.3) 103.18%), #FFFFFF;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+@media only screen and (max-width: 1267px) {
+    .vanta-info-bage,
+    .vanta-info {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .vanta-info .hidden-xs {
+        display: none;
+    }
+
+    .vanta-info {
+        padding-left: 150px;
+    }
+
+    .vanta-info-bage svg {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .vanta-info {
+        padding-left: 120px;
+    }
+}
+
+.vanta-calc-opener {
+    border: 1px solid #D3D3D3;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 16px;
+    cursor: pointer;
+    color: #1B1B1B;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 8px;
+}
+
+.vanta-calc-opener img {
+    margin-right: 8px;
+}
+
+.calc-opener-arrow {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+.vanta-calc-opener.open .calc-opener-arrow {
+    transform: rotate(0deg);
+}
+
+.calc-opener-arrow:before {
+    content: "\f107";
+    font-size: 25px;
+    display: inline-block;
+    font-family: 'FontAwesome';
+    color: #1B1B1B;
+}
+
+.vanta-calc-inner {
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #D3D3D3;
+    background: #fff;
+}
+
+.vanta-calc-inner p,
+.vanta-calc-inner a {
+    color: #1F2124;
+}
+
+.vanta-calc-outer {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.vanta-calc .nav {
+    display: flex;
+    width: 100%;
+    background: #F6F6F6;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.vanta-calc .nav > li > a {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 7px 0px;
+    font-size: 14px;
+}
+
+.vanta-calc .nav > li.active > a,
+.vanta-calc .nav > li > a:hover,
+.vanta-calc .nav > li > a:focus {
+    background: unset;
+    border: 1px solid #898989;
+}
+
+.vanta-calc .nav > li.active > a {
+    background: #fff;
+}
+
+.vanta-calc ul.nav > li {
+    width: 100%;
+    text-align: center;
+}
+
+.vanta-calc .month-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.month-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.month-item:first-child {
+    max-width: 24%;
+}
+
+.month-progress {
+    width: 100%;
+    background: #F968D3;
+    border-radius: 6px;
+    display: inline-block;
+    height: 6px;
+    margin-bottom: 6px;
+    opacity: 0.3;
+}
+
+.month-progress.active {
+    opacity: 1;
+}
+
+.vanta-calc .month-summ {
+    font-weight: bold;
+    color: #1F2124;
+}
+
+.vanta-calc .month-text {
+    color: #898989;
+    font-size: 14px;
+}

@@ -36,6 +36,13 @@ const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
   if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
 
+  // Rewrite absolute store77.net paths to local assets
+  // e.g. /upload/... → /assets/store77.net/upload/...
+  // e.g. /bitrix/... → /assets/store77.net/bitrix/...
+  if (urlPath.startsWith('/upload/') || urlPath.startsWith('/bitrix/') || urlPath.startsWith('/local/')) {
+    urlPath = '/assets/store77.net' + urlPath;
+  }
+
   const filePath = path.join(ROOT, urlPath);
 
   // Security: prevent directory traversal

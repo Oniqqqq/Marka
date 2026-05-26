@@ -1,1 +1,13 @@
-/* tradein.css - placeholder */
+.tradein__option .tradein__variant {
+    display: flex;
+    align-items: center;
+    padding-top: 6px;
+}
+.tradein__variant input + label {
+    margin-right: 6px;
+}
+.tradein__variant .tradein__variant-select,
+.tradein__variant .tradein__variant-sort {
+    height: 28px !important;
+    box-sizing: border-box;
+}

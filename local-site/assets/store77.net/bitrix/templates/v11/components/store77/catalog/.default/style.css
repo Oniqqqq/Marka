@@ -1,1 +1,23 @@
-/* .default component CSS placeholder */
+.specify_category .filter_box .col_multi {
+    display: flex;
+    flex-wrap: wrap;
+}
+.specify_category .col_multi li a {
+    background: #f5f5f5;
+    border-radius: 20px;
+    display: inline-flex;
+    color: #5c5c5c;
+    font-style: italic;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+    margin-right: 7px;
+}
+.specify_category .col_multi li a.act,
+.specify_category .col_multi li a:hover {
+    background: #e4dc00;
+    color: #5c5c5c;    
+}
+
+.sort_total_filter .block_total_filter.multiserch_result_filter {
+    width: 100%;
+}

@@ -1,1 +1,17 @@
-/* call_form component CSS placeholder */
+#call_form .smart-captcha {
+	height: 102px !important;
+	border-radius: 9px;
+}
+.modal-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	background: #fff;
+	z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
