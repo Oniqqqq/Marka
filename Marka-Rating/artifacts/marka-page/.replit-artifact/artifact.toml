@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Marka Rating — LEGO Ideas 21345"
+version = "1.0.0"
+id = "artifacts/marka-page"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22325
+
+[services.development]
+run = "pnpm --filter @workspace/marka-page run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/marka-page", "run", "build" ]
+publicDir = "artifacts/marka-page/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22325"
+BASE_PATH = "/"
