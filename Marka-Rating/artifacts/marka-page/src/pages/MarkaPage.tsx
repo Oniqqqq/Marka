@@ -93,6 +93,14 @@ const IconScan = () => (
   </svg>
 );
 
+const IconChestnyZnak = () => (
+  <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
+    <polygon points="16,2 30,9 30,23 16,30 2,23 2,9" fill="#f5c518" opacity="0.95"/>
+    <polygon points="16,6 26,11 26,21 16,26 6,21 6,11" fill="#1a1a1a" opacity="0.85"/>
+    <polyline points="10,16 14,20 22,12" stroke="#f5c518" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+  </svg>
+);
+
 // ─── Laureate Badge with 3D tilt ─────────────────────────────────────────────
 function LaureateBadge({ src }: { src: string }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -428,6 +436,23 @@ export default function MarkaPage() {
               >{item}</a>
             ))}
           </nav>
+          {/* Честный Знак disclaimer */}
+          <div style={{
+            display: "flex", alignItems: "center", gap: 6,
+            padding: "5px 11px 5px 8px",
+            background: "rgba(245,197,24,0.06)",
+            border: "1px solid rgba(245,197,24,0.18)",
+            borderRadius: 100,
+            fontSize: 11,
+            color: "rgba(245,197,24,0.75)",
+            letterSpacing: "0.01em",
+            userSelect: "none",
+            backdropFilter: "blur(8px)",
+          }}>
+            <IconChestnyZnak/>
+            <span>Работает на базе&nbsp;<span style={{ fontWeight: 600 }}>Честный Знак</span></span>
+          </div>
+
           {/* Right */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{
