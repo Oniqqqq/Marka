@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import logoTag from "@assets/ChatGPT_Image_25_мая_2026_г.,_13_53_33_1779805490562.png";
 import laureate from "@assets/0e0cf785-9df1-4fa3-84bc-0a9eb4e235b3_1779805490563.png";
+import chestnyznakIcon from "@assets/chestnyznak-icon.png";
 
 // ─── Utility ────────────────────────────────────────────────────────────────
 function useInView(threshold = 0.15) {
@@ -90,14 +91,6 @@ const IconScan = () => (
     <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/>
     <path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
     <line x1="7" y1="12" x2="17" y2="12"/>
-  </svg>
-);
-
-const IconChestnyZnak = () => (
-  <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-    <polygon points="16,2 30,9 30,23 16,30 2,23 2,9" fill="#f5c518" opacity="0.95"/>
-    <polygon points="16,6 26,11 26,21 16,26 6,21 6,11" fill="#1a1a1a" opacity="0.85"/>
-    <polyline points="10,16 14,20 22,12" stroke="#f5c518" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
   </svg>
 );
 
@@ -440,16 +433,21 @@ export default function MarkaPage() {
           <div style={{
             display: "flex", alignItems: "center", gap: 6,
             padding: "5px 11px 5px 8px",
-            background: "rgba(245,197,24,0.06)",
-            border: "1px solid rgba(245,197,24,0.18)",
+            background: "rgba(245,197,24,0.07)",
+            border: "1px solid rgba(245,197,24,0.2)",
             borderRadius: 100,
             fontSize: 11,
-            color: "rgba(245,197,24,0.75)",
+            color: "rgba(245,197,24,0.8)",
             letterSpacing: "0.01em",
             userSelect: "none",
             backdropFilter: "blur(8px)",
+            whiteSpace: "nowrap",
           }}>
-            <IconChestnyZnak/>
+            <img
+              src={chestnyznakIcon}
+              alt="Честный Знак"
+              style={{ width: 16, height: 16, display: "block", imageRendering: "auto" }}
+            />
             <span>Работает на базе&nbsp;<span style={{ fontWeight: 600 }}>Честный Знак</span></span>
           </div>
 
